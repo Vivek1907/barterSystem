@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert, Modal, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert, Modal, ScrollView, Image } from 'react-native';
 import firebase from '../config';
 import 'firebase/firestore';
 
@@ -33,6 +33,7 @@ export default class SignupLoginScreen extends React.Component {
                 address: address
             }).then(() => {
                 Alert.alert("You have successfully Signed up!")
+                this.props.navigation.navigate("DrawerNavigator")
             }).catch((error)=>{
                 Alert.alert(error.toString())
             })
@@ -43,7 +44,7 @@ export default class SignupLoginScreen extends React.Component {
 
     logIn = async (email, password) => {
         firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-            Alert.alert("You have successfully Logged In!")
+            this.props.navigation.navigate("DrawerNavigator")
         }).catch((error) => {
             Alert.alert("Incorrect Email or password")
         })
@@ -177,6 +178,7 @@ export default class SignupLoginScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                
                 <Text style={styles.title}>
                     Barter
                 </Text>
@@ -241,7 +243,7 @@ export default class SignupLoginScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#64d4ed',
+        backgroundColor: '#e6765e',
         justifyContent: 'center',
     },
     input: {
@@ -271,7 +273,7 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         marginVertical: 10,
         width: 100,
-        borderRadius: 20,
+        borderRadius: 10,
         backgroundColor: '#fff',
         alignSelf: 'center'
     },

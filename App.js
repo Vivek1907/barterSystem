@@ -1,11 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import SignupLoginScreen from './screens/SignupLoginScreen';
+import {createSwitchNavigator, createAppContainer} from 'react-navigation';
+import {AppDrawerNavigator} from './components/AppDrawerNavigator'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <SignupLoginScreen/>
+      <AppContainer/>
     </View>
   );
 }
@@ -13,8 +15,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#beb550',
-    alignItems: 'center',
     justifyContent: 'center',
   },
 });
+
+
+
+const SwitchNavigator = createSwitchNavigator({
+  Signup: SignupLoginScreen,
+  DrawerNavigator: AppDrawerNavigator
+})
+
+const AppContainer = createAppContainer(SwitchNavigator)
